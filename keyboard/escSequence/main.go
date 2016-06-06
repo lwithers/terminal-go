@@ -203,18 +203,20 @@ func constDump(keyNames map[string]bool) {
 	// print out our numeric keypress constants; we'll also want the max
 	// string length so we can nicely justify our map in the following
 	// section
+	for ctrl := 'A'; ctrl <= 'Z'; ctrl++ {
+		if ctrl == 'A' {
+			fmt.Printf("\tKey_Ctrl_A KeyPress = -1000 - iota\n")
+		} else {
+			fmt.Printf("\tKey_Ctrl_%c\n", ctrl)
+		}
+	}
 	maxlen := 0
-	for idx, k := range names {
+	for _, k := range names {
 		klen := utf8.RuneCountInString(k)
 		if klen > maxlen {
 			maxlen = klen
 		}
-
-		if idx == 0 {
-			fmt.Printf("\tKey_%s KeyPress = -1000 - iota\n", k)
-		} else {
-			fmt.Printf("\tKey_%s\n", k)
-		}
+		fmt.Printf("\tKey_%s\n", k)
 	}
 
 	fmt.Print(")\n\nvar KeyNames = map[KeyPress]string{\n")
@@ -224,6 +226,9 @@ func constDump(keyNames map[string]bool) {
 	constDumpKey("Escape", maxlen)
 	constDumpKey("Enter", maxlen)
 	constDumpKey("Backspace", maxlen)
+	for ctrl := 'A'; ctrl <= 'Z'; ctrl++ {
+		constDumpKey(fmt.Sprintf("Ctrl_%c", ctrl), maxlen)
+	}
 	for _, k := range names {
 		constDumpKey(k, maxlen)
 	}

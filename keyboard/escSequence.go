@@ -7,7 +7,33 @@ DO NOT EDIT
 */
 
 const (
-	Key_Alt_0 KeyPress = -1000 - iota
+	Key_Ctrl_A KeyPress = -1000 - iota
+	Key_Ctrl_B
+	Key_Ctrl_C
+	Key_Ctrl_D
+	Key_Ctrl_E
+	Key_Ctrl_F
+	Key_Ctrl_G
+	Key_Ctrl_H
+	Key_Ctrl_I
+	Key_Ctrl_J
+	Key_Ctrl_K
+	Key_Ctrl_L
+	Key_Ctrl_M
+	Key_Ctrl_N
+	Key_Ctrl_O
+	Key_Ctrl_P
+	Key_Ctrl_Q
+	Key_Ctrl_R
+	Key_Ctrl_S
+	Key_Ctrl_T
+	Key_Ctrl_U
+	Key_Ctrl_V
+	Key_Ctrl_W
+	Key_Ctrl_X
+	Key_Ctrl_Y
+	Key_Ctrl_Z
+	Key_Alt_0
 	Key_Alt_1
 	Key_Alt_2
 	Key_Alt_3
@@ -110,6 +136,32 @@ var KeyNames = map[KeyPress]string{
 	Key_Escape:       "Escape",
 	Key_Enter:        "Enter",
 	Key_Backspace:    "Backspace",
+	Key_Ctrl_A:       "Ctrl_A",
+	Key_Ctrl_B:       "Ctrl_B",
+	Key_Ctrl_C:       "Ctrl_C",
+	Key_Ctrl_D:       "Ctrl_D",
+	Key_Ctrl_E:       "Ctrl_E",
+	Key_Ctrl_F:       "Ctrl_F",
+	Key_Ctrl_G:       "Ctrl_G",
+	Key_Ctrl_H:       "Ctrl_H",
+	Key_Ctrl_I:       "Ctrl_I",
+	Key_Ctrl_J:       "Ctrl_J",
+	Key_Ctrl_K:       "Ctrl_K",
+	Key_Ctrl_L:       "Ctrl_L",
+	Key_Ctrl_M:       "Ctrl_M",
+	Key_Ctrl_N:       "Ctrl_N",
+	Key_Ctrl_O:       "Ctrl_O",
+	Key_Ctrl_P:       "Ctrl_P",
+	Key_Ctrl_Q:       "Ctrl_Q",
+	Key_Ctrl_R:       "Ctrl_R",
+	Key_Ctrl_S:       "Ctrl_S",
+	Key_Ctrl_T:       "Ctrl_T",
+	Key_Ctrl_U:       "Ctrl_U",
+	Key_Ctrl_V:       "Ctrl_V",
+	Key_Ctrl_W:       "Ctrl_W",
+	Key_Ctrl_X:       "Ctrl_X",
+	Key_Ctrl_Y:       "Ctrl_Y",
+	Key_Ctrl_Z:       "Ctrl_Z",
 	Key_Alt_0:        "Alt_0",
 	Key_Alt_1:        "Alt_1",
 	Key_Alt_2:        "Alt_2",

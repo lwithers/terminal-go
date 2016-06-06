@@ -19,13 +19,14 @@ func main() {
 	sigch := make(chan os.Signal)
 	signal.Notify(sigch, unix.SIGINT, unix.SIGTERM)
 
-	fmt.Println("Press ‘q’ to quit.\r")
+	fmt.Println("Press ‘q’ or Control-C to quit.\r")
 EventLoop:
 	for {
 		select {
 		case key := <-keych:
 			fmt.Printf("Got key %6d\r\n", key)
-			if key == 'q' {
+			switch key {
+			case 'q', keyboard.Key_Ctrl_C:
 				break EventLoop
 			}
 		case <-sigch:
