@@ -1,6 +1,8 @@
 package screen
 
-func Draw(sym Symbol, x, y int) {
+// DrawRune modifies the screen buffer by placing the given Unicode rune
+// with fg/bg text/background colours at the given x,y coordinates.
+func DrawRune(r rune, fg, bg uint32, x, y int) {
 	if x < buf.dmgX1 {
 		buf.dmgX1 = x
 	}
@@ -15,15 +17,18 @@ func Draw(sym Symbol, x, y int) {
 	}
 
 	pos := y*buf.w + x
-	buf.runes[pos] = sym.R
-	buf.fg[pos] = sym.Fg
-	buf.bg[pos] = sym.Bg
+	buf.runes[pos] = r
+	buf.fg[pos] = fg
+	buf.bg[pos] = bg
 }
 
+// Flush writes the contents of the buffer to the screen.
 func Flush() {
 	buf.drawBuffer()
 }
 
+// Clear clears the buffer (so the next flush will display an empty screen with
+// a black blackground).
 func Clear() {
 	buf.clearBuffer()
 }

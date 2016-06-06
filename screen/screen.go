@@ -11,11 +11,15 @@ import (
 	"github.com/lwithers/terminal-go/screen/raw"
 )
 
+// Init will clear the screen contents, disable scrollback mode, and disable
+// the cursor.
 func Init() {
 	raw.ScreenSetup(os.Stdout)
 	buf.resetBuffer()
 }
 
+// Stop returns the screen contents to how they were before program execution,
+// restoring scrollback.
 func Stop() {
 	raw.ScreenTeardown(os.Stdout)
 }
