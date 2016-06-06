@@ -15,11 +15,13 @@ import (
 // the cursor.
 func Init() {
 	raw.ScreenSetup(os.Stdout)
+	raw.CursorHide(os.Stdout)
 	buf.resetBuffer()
 }
 
 // Stop returns the screen contents to how they were before program execution,
 // restoring scrollback.
 func Stop() {
+	raw.CursorShow(os.Stdout)
 	raw.ScreenTeardown(os.Stdout)
 }
