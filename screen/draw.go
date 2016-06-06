@@ -13,7 +13,7 @@ func DrawRune(r rune, fg, bg uint32, x, y int) {
 		buf.dmgY1 = y
 	}
 	if y >= buf.dmgY2 {
-		buf.dmgY2 = y
+		buf.dmgY2 = y + 1
 	}
 
 	pos := y*buf.w + x
