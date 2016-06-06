@@ -13,6 +13,7 @@ const (
 	keySequenceTimeout = time.Millisecond * 20
 )
 
+// StartReader returns a channel which receives a copy of any keypresses.
 func StartReader() chan KeyPress {
 	ch := make(chan KeyPress)
 	go reader(ch)
@@ -87,8 +88,4 @@ func reader(outch chan KeyPress) {
 			break
 		}
 	}
-}
-
-func escapeFullSequence(buf []byte) bool {
-	return true
 }

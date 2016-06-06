@@ -12,10 +12,14 @@ const (
 	Key_Backspace = KeyPress(-3)
 )
 
+// IsRune returns true if k represents a Unicode rune. This is true for all
+// positive values of k.
 func (k KeyPress) IsRune() bool {
 	return k > 0
 }
 
+// String returns the string representation of the keypress: either the
+// Unicode rune it represents, or the key's name from KeyNames.
 func (k KeyPress) String() string {
 	if k > 0 {
 		return string([]rune{rune(k)})
