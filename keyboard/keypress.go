@@ -2,6 +2,8 @@ package keyboard
 
 import "fmt"
 
+// KeyPress represents a single keypress. If the value is > 0 then it
+// represents a rune.
 type KeyPress int32
 
 const (
