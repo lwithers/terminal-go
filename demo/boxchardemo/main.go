@@ -4,6 +4,8 @@ boxchardemo draws box characters on the screen, with a nice grid.
 package main
 
 import (
+	"fmt"
+
 	"github.com/lwithers/terminal-go/keyboard"
 	"github.com/lwithers/terminal-go/screen"
 )
@@ -14,6 +16,17 @@ var (
 	Bg     = screen.Colour(0, 0, 0)
 	CharFg = screen.Colour(255, 255, 255)
 )
+
+func drawChars(base int) {
+	// print characters
+	for y := 0; y < 16; y++ {
+		for x := 0; x < 16; x++ {
+			screen.DrawRune(rune(base+y<<4+x), CharFg, Bg,
+				x*2+3, y*2+3)
+		}
+	}
+
+}
 
 func main() {
 	screen.Init()
@@ -60,19 +73,27 @@ func main() {
 		screen.DrawRune('┴', BoxFg, Bg, x*2+2, 34)
 	}
 
-	// print characters
-	for y := 0; y < 16; y++ {
-		for x := 0; x < 16; x++ {
-			screen.DrawRune(rune(0x2500+y<<4+x), CharFg, Bg,
-				x*2+3, y*2+3)
+	screen.DrawString("Press ‘q’ to exit", CharFg, Bg, 1, 36, 0)
+	keych := keyboard.StartReader()
+	base := 0x2500
+
+MainLoop:
+	for {
+		screen.DrawString(fmt.Sprintf("Base: 0x%05X", base),
+			CharFg, Bg, 1, 37, 0)
+		drawChars(base)
+		screen.Flush()
+
+		key := <-keych
+		switch key {
+		case keyboard.Key_Ctrl_C, 'q', 'Q':
+			break MainLoop
+		case keyboard.Key_PgUp:
+			base -= 0x100
+		case keyboard.Key_PgDown:
+			base += 0x100
 		}
 	}
-
-	screen.DrawString("Press any key to exit", CharFg, Bg, 1, 36, 0)
-	screen.Flush()
-
-	keych := keyboard.StartReader()
-	<-keych
 
 	keyboard.Stop()
 	screen.Stop()
