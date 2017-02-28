@@ -38,13 +38,26 @@ func RegisterSizeNotifier(n ScreenSizeNotifier) {
 	screenNotifyLock.Unlock()
 }
 
+// StopSizeNotifier stops notifications from being sent to the given notifier
+// object.
+func StopSizeNotifier(n ScreenSizeNotifier) {
+	screenNotifyLock.Lock()
+	for i, nn := range winchNotifiers {
+		if n == nn {
+			copy(winchNotifiers[i:], winchNotifiers[i+1:])
+			winchNotifiers[len(winchNotifiers)-1] = nil
+			winchNotifiers = winchNotifiers[:len(winchNotifiers)-1]
+			break
+		}
+	}
+	screenNotifyLock.Unlock()
+}
+
 func init() {
 	screenW, screenH = raw.GetWinSize()
 	if screenW <= 0 || screenH <= 0 {
 		panic("unable to query screen size")
 	}
-
-	winchNotifiers = make([]ScreenSizeNotifier, 0)
 
 	c := make(chan os.Signal)
 	signal.Notify(c, unix.SIGWINCH)

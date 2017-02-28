@@ -10,3 +10,9 @@ const (
 	White = 0xFFFFFF
 	Black = 0x000000
 )
+
+var (
+	// Background is the default background colour for newly-cleared
+	// screens/windows.
+	Background uint32 = Black //TODO: change to white
+)
